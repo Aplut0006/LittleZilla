@@ -22,7 +22,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/aclonica"
-        android:text="LearnZilla"
+        android:text="LittleZilla"
         android:textColor="#058971"
         android:textSize="40sp"
         android:textStyle="italic" />
@@ -36,6 +36,6 @@
         android:fontFamily="@font/aclonica"
         android:text="lets learn more easy way"
         android:textColor="#fd5d2b"
-        android:textSize="25sp"
+        android:textSize="15sp"
         android:textStyle="italic" />
 </LinearLayout>
