@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter<BannerModel, BannerRecyclerHolder> adapter;
     private DatabaseReference databaseReference;
     private Toolbar toolbar;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Little Zilla");
         setSupportActionBar(toolbar);
+        progressBar = findViewById(R.id.progressBarBannerDashboard);
         recyclerViewBanner = findViewById(R.id.recyclerViewBanner);
         recyclerViewBanner.setHasFixedSize(true);
         recyclerViewBanner.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
@@ -57,11 +61,23 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new FirebaseRecyclerAdapter<BannerModel, BannerRecyclerHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull BannerRecyclerHolder holder, int position, @NonNull final BannerModel model) {
+            protected void onBindViewHolder(@NonNull final BannerRecyclerHolder holder, int position, @NonNull final BannerModel model) {
+                holder.progressBarBannerView.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
                 Picasso.get().load(model.getBannerImages())
                         .fit()
                         .centerCrop()
-                        .into(holder.bannerImageView);
+                        .into(holder.bannerImageView, new Callback() {
+                            @Override
+                            public void onSuccess() {
+                                holder.progressBarBannerView.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+
+                            }
+                        });
 
             }
             @NonNull

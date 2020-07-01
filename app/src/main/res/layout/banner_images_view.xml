@@ -18,6 +18,13 @@
             android:id="@+id/banner_imageView"
             android:contentDescription="@string/banner_images" />
 
+        <ProgressBar
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/progressBarBanner"
+            style="@style/AppTheme.Blue"
+            android:layout_gravity="center"/>
+
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>
