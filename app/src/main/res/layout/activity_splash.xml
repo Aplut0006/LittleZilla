@@ -36,6 +36,6 @@
         android:fontFamily="@font/aclonica"
         android:text="lets learn more easy way"
         android:textColor="#fd5d2b"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:textStyle="italic" />
 </LinearLayout>
