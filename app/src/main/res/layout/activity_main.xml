@@ -22,16 +22,6 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ProgressBar
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/appBar"
-        android:id="@+id/progressBarBannerDashboard"
-        android:visibility="visible"
-        android:layout_marginTop="70dp"
-        />
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="180dp"

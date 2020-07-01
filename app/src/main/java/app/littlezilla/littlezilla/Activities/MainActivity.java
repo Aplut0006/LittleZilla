@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter<BannerModel, BannerRecyclerHolder> adapter;
     private DatabaseReference databaseReference;
     private Toolbar toolbar;
-    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Little Zilla");
         setSupportActionBar(toolbar);
-        progressBar = findViewById(R.id.progressBarBannerDashboard);
         recyclerViewBanner = findViewById(R.id.recyclerViewBanner);
         recyclerViewBanner.setHasFixedSize(true);
         recyclerViewBanner.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
@@ -63,22 +61,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull final BannerRecyclerHolder holder, int position, @NonNull final BannerModel model) {
                 holder.progressBarBannerView.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
-                Picasso.get().load(model.getBannerImages())
-                        .fit()
-                        .centerCrop()
-                        .into(holder.bannerImageView, new Callback() {
-                            @Override
-                            public void onSuccess() {
-                                holder.progressBarBannerView.setVisibility(View.GONE);
-                            }
 
-                            @Override
-                            public void onError(Exception e) {
+                    Picasso.get().load(model.getBannerImages())
+                            .fit()
+                            .centerCrop()
+                            .into(holder.bannerImageView, new Callback() {
+                                @Override
+                                public void onSuccess() {
+                                    holder.progressBarBannerView.setVisibility(View.GONE);
+                                }
+                                @Override
+                                public void onError(Exception e) {
 
-                            }
-                        });
-
+                                }
+                            });
             }
             @NonNull
             @Override
