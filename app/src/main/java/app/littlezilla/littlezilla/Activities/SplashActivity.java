@@ -1,4 +1,4 @@
-package app.littlezilla.littlezilla;
+package app.littlezilla.littlezilla.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import app.littlezilla.littlezilla.R;
 
 public class SplashActivity extends AppCompatActivity {
     ImageView imageview;

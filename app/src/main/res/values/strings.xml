@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Little Zilla</string>
     <string name="little_zilla">Little Zilla</string>
+    <string name="banner_images">Images loaded from Firebase</string>
 </resources>
