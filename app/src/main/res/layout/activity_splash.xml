@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:background="#BBF1F6F6"
+    tools:context=".SplashActivity">
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="400dp"
+    android:layout_marginTop="100dp"
+    android:id="@+id/splash_image"
+    android:src="@drawable/splah"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/aclonica"
+        android:text="LittleZilla"
+        android:textColor="#058971"
+        android:textSize="40sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/sub_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/aclonica"
+        android:text="lets learn more easy way"
+        android:textColor="#fd5d2b"
+        android:textSize="20sp"
+        android:textStyle="italic" />
+</LinearLayout>
