@@ -17,7 +17,6 @@ public class BannerRecyclerHolder extends RecyclerView.ViewHolder {
 
     public ImageView bannerImageView;
     public ProgressBar progressBarBannerView;
-    public ShimmerFrameLayout shimmerFrameLayout;
     public BannerRecyclerHolder(@NonNull View itemView) {
         super(itemView);
         bannerImageView = itemView.findViewById(R.id.banner_imageView);
