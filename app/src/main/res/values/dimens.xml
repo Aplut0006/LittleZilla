@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="editText">20dp</dimen>
+    <dimen name="forgotPassword">15dp</dimen>
+    <dimen name="imageWidth">150dp</dimen>
+    <dimen name="imageHeight">150dp</dimen>
+    <dimen name="textViewWelcomeLogin">30dp</dimen>
+
+</resources>
