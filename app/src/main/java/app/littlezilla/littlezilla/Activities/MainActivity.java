@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -124,6 +125,38 @@ public class MainActivity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull final ContentRecyclerHolder holder, int position, @NonNull final ContentModel model) {
                 holder.progressBarContent.setVisibility(View.VISIBLE);
                 holder.textViewContent.setText(model.getTitle());
+
+
+                holder.buttonViewOption.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        PopupMenu popup = new PopupMenu(MainActivity.this, holder.buttonViewOption);
+                        //inflating menu from xml resource
+                        popup.inflate(R.menu.menu_card);
+                        //adding click listener
+                        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item) {
+                                switch (item.getItemId()) {
+                                    case R.id.menu1:
+                                        Toast.makeText(MainActivity.this, "1 clicked", Toast.LENGTH_SHORT).show();
+                                        break;
+                                    case R.id.menu2:
+                                        Toast.makeText(MainActivity.this, "2 clicked", Toast.LENGTH_SHORT).show();
+                                        break;
+                                    case R.id.menu3:
+                                        Toast.makeText(MainActivity.this, "3 clicked", Toast.LENGTH_SHORT).show();
+                                        break;
+                                }
+                                return false;
+                            }
+                        });
+                        //displaying the popup
+                        popup.show();
+
+                    }
+                });
 
                 Picasso.get().load(model.getImage())
                         .fit()
