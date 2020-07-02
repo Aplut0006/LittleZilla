@@ -5,30 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
-    android:background="#BBF1F6F6"
+    android:background="#f7f7f7"
     tools:context=".Activities.SplashActivity">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
-
         <ImageView
             android:id="@+id/splash_image"
             android:layout_width="wrap_content"
             android:layout_height="300dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="100dp"
             android:src="@drawable/splah" />
 
         <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
+            android:layout_below="@id/splash_image"
         android:fontFamily="@font/aclonica"
         android:text="LittleZilla"
         android:textColor="#058971"
+            android:layout_centerHorizontal="true"
         android:textSize="40sp"
         android:textStyle="italic" />
 
@@ -39,9 +34,11 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/aclonica"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/title"
         android:text="lets learn more easy way"
         android:textColor="#fd5d2b"
         android:textSize="20sp"
         android:textStyle="italic" />
-    </LinearLayout>
+
 </RelativeLayout>
