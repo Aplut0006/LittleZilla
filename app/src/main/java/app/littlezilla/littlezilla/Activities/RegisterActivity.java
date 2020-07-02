@@ -17,7 +17,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import app.littlezilla.littlezilla.Models.RegisterModel;
 import app.littlezilla.littlezilla.R;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -26,6 +29,8 @@ public class RegisterActivity extends AppCompatActivity {
     TextView Logintext;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
+   FirebaseDatabase rootnode;
+   DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +53,14 @@ public class RegisterActivity extends AppCompatActivity {
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rootnode=FirebaseDatabase.getInstance();
+                reference=rootnode.getReference("profile");
+
                 String email = Gemail.getText().toString().trim();
                 String password = mpassword.getText().toString().trim();
-                String name = mname.getText().toString().trim();
+                String username = mname.getText().toString().trim();
                 String phone = mphone.getText().toString().trim();
+                RegisterModel model=new RegisterModel(username,email,password,phone);
 
                 if (TextUtils.isEmpty(email)) {
                     Gemail.setError("Email is required");
@@ -65,7 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
                     mpassword.setError("Password length must be >= 6");
                     return;
                 }
-                if (TextUtils.isEmpty(name)) {
+                if (TextUtils.isEmpty(username)) {
                     mname.setError("Name is required");
                     return;
                 }
@@ -73,8 +82,9 @@ public class RegisterActivity extends AppCompatActivity {
                     mname.setError("Phone no is required");
                     return;
                 }
+                reference.child(phone).setValue(model);
                 progressBar.setVisibility(View.VISIBLE);
-                //register the user firrebase
+                //register the user firebase
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
