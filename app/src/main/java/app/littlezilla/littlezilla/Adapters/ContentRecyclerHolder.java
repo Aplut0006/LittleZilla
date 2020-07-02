@@ -22,8 +22,6 @@ public class ContentRecyclerHolder extends RecyclerView.ViewHolder {
         imageViewContent = itemView.findViewById(R.id.content_imageView);
         textViewContent = itemView.findViewById(R.id.content_textView);
         buttonViewOption = itemView.findViewById(R.id.textViewOptions);
-
-
         progressBarContent = itemView.findViewById(R.id.progressBarContent);
 
 

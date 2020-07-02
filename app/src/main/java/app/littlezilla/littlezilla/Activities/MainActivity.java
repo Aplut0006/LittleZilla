@@ -122,9 +122,30 @@ public class MainActivity extends AppCompatActivity {
 
         adapter1 = new FirebaseRecyclerAdapter<ContentModel, ContentRecyclerHolder>(options1) {
             @Override
-            protected void onBindViewHolder(@NonNull final ContentRecyclerHolder holder, int position, @NonNull final ContentModel model) {
+            protected void onBindViewHolder(@NonNull final ContentRecyclerHolder holder, final int position, @NonNull final ContentModel model) {
                 holder.progressBarContent.setVisibility(View.VISIBLE);
                 holder.textViewContent.setText(model.getTitle());
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(position ==0) {
+                            Intent intent = new Intent(MainActivity.this,HindiActivity.class);
+                            startActivity(intent);
+                        }else if (position ==1){
+                            Intent intent = new Intent(MainActivity.this,EnglishActivity.class);
+                            startActivity(intent);
+                        }
+                        else if (position ==2){
+                            Intent intent = new Intent(MainActivity.this,PoemsActivity.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            Intent intent = new Intent(MainActivity.this,MathsActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
 
 
                 holder.buttonViewOption.setOnClickListener(new View.OnClickListener() {
