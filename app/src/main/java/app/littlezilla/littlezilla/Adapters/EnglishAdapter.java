@@ -84,8 +84,8 @@ public class EnglishAdapter extends PagerAdapter {
                             || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                     } else {
                         buttonPlayLetter.setEnabled(true);
+                        buttonPlayDescription.setEnabled(true);
                     }
-                } else {
                 }
             }
         });

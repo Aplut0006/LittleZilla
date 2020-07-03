@@ -41,7 +41,7 @@
                 android:text="क se कबूतर"
                 android:textAlignment="center"
                 android:textSize="35dp"
-                android:visibility="visible" />
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/buttonPlayDescription"
