@@ -3,6 +3,9 @@
     package="app.littlezilla.littlezilla">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
 
     <application
         android:allowBackup="true"
@@ -11,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MathsActivity"></activity>
+        <activity android:name=".Activities.PracticeActivity"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".Activities.MathsActivity" />
         <activity android:name=".Activities.PoemsActivity" />
         <activity android:name=".Activities.EnglishActivity" />
         <activity android:name=".Activities.HindiActivity" />
@@ -24,7 +29,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.MainActivity" />
+        <activity android:name=".Activities.MainActivity"
+            android:configChanges="orientation|screenSize"/>
 
         <meta-data
             android:name="preloaded_fonts"

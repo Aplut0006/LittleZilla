@@ -18,22 +18,22 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 import java.util.Locale;
 
-import app.littlezilla.littlezilla.Activities.PracticeActivity;
 import app.littlezilla.littlezilla.Models.EnglishModel;
+import app.littlezilla.littlezilla.Models.HindiModel;
 import app.littlezilla.littlezilla.R;
 
-public class EnglishAdapter extends PagerAdapter {
+public class HindiAdapter extends PagerAdapter {
 
     private Context context;
-    private List<EnglishModel> modelList;
+    private List<HindiModel> modelList;
     private LayoutInflater inflater;
     private TextToSpeech tts;
 
 
-    public EnglishAdapter(Context context, List<EnglishModel> modelList) {
+    public HindiAdapter(Context context, List<HindiModel> modelList) {
         this.context = context;
         this.modelList = modelList;
-        inflater = LayoutInflater.from(context);
+        this.inflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -54,18 +54,13 @@ public class EnglishAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-
-
-
-        View view = inflater.inflate(R.layout.item_english,container,false);
-        final TextView textViewCapitalLetter = view.findViewById(R.id.textCaptialA);
-        TextView textViewSmallLetter = view.findViewById(R.id.textSmalla);
+        View view = inflater.inflate(R.layout.item_hiindi,container,false);
+        final TextView textViewCapitalLetter = view.findViewById(R.id.textKa);
         final TextView textViewDescription = view.findViewById(R.id.textDescription);
-        ImageView imageViewEnglish = view.findViewById(R.id.imageEnglish);
+        ImageView imageViewEnglish = view.findViewById(R.id.imageHindi);
         final Button buttonPlayLetter = view.findViewById(R.id.buttonPlay);
         final Button buttonPlayDescription = view.findViewById(R.id.buttonPlayDescription);
         textViewCapitalLetter.setText(modelList.get(position).getCapitalLetter());
-        textViewSmallLetter.setText(modelList.get(position).getSmallLetter());
         textViewDescription.setText(modelList.get(position).getTextDescription());
 
         Picasso.get().load(modelList.get(position).getImage())
@@ -78,7 +73,7 @@ public class EnglishAdapter extends PagerAdapter {
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {
 
-                    int result = tts.setLanguage(Locale.US);
+                    int result = tts.setLanguage(Locale.forLanguageTag("hin"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA
                             || result == TextToSpeech.LANG_NOT_SUPPORTED) {
@@ -93,7 +88,7 @@ public class EnglishAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 String text = textViewCapitalLetter.getText().toString();
-                tts.setLanguage(Locale.UK);
+                tts.setLanguage(Locale.forLanguageTag("hin"));
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 
             }
@@ -113,7 +108,6 @@ public class EnglishAdapter extends PagerAdapter {
                 buttonPlayDescription.setVisibility(View.VISIBLE);
             }
         });
-
         container.addView(view);
         return view;
     }

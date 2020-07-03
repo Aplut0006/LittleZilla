@@ -40,8 +40,6 @@ public class EnglishActivity extends AppCompatActivity implements FirebaseLoadDo
         setSupportActionBar(toolbar);
         toolbar.setTitle("English Alphabets");
         viewPager.setPageTransformer(true,new DepthPageTransformer());
-
-
         databaseReference = FirebaseDatabase.getInstance().getReference().child("english");
 
         firebaseLoadDone = this;

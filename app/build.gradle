@@ -36,7 +36,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.firebaseui:firebase-ui-database:6.2.1'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    implementation 'com.github.golovin47.drawingview:drawingview:1.0.0'
+
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 }
