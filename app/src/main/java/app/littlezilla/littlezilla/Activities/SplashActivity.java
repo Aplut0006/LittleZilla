@@ -32,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
         Thread splashthread=new Thread(){
             public void run() {
                 try{
-                    sleep(2000);
+                    sleep(3000);
                     Intent intent=new Intent(SplashActivity.this,LoginActivity.class);
                     startActivity(intent);
                     finish();
