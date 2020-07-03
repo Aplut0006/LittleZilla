@@ -68,10 +68,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewContent.setHasFixedSize(true);
         recyclerViewContent.setLayoutManager(new GridLayoutManager(this, 2));
         databaseReferenceBanner = FirebaseDatabase.getInstance().getReference().child("BannerImages");
-        
         mAuth=FirebaseAuth.getInstance();
         FirebaseUser user=mAuth.getCurrentUser();
-        
+
         databaseReferenceBanner.keepSynced(true);
 
         options = new FirebaseRecyclerOptions.Builder<BannerModel>()
