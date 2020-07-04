@@ -146,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
                 holder.buttonViewOption.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -159,8 +158,9 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public boolean onMenuItemClick(MenuItem item) {
                                 switch (item.getItemId()) {
-                                    case R.id.menu1:
-                                        Toast.makeText(MainActivity.this, "1 clicked", Toast.LENGTH_SHORT).show();
+                                    case R.id.practice:
+                                        Intent intent = new Intent(MainActivity.this,PracticeActivity.class);
+                                        startActivity(intent);
                                         break;
                                     case R.id.menu2:
                                         Toast.makeText(MainActivity.this, "2 clicked", Toast.LENGTH_SHORT).show();
