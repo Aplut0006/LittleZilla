@@ -90,7 +90,6 @@ public class HindiAdapter extends PagerAdapter {
                 String text = textViewCapitalLetter.getText().toString();
                 tts.setLanguage(Locale.forLanguageTag("hin"));
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-
             }
         });
 
