@@ -22,12 +22,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import app.littlezilla.littlezilla.R;
 
 public class LoginActivity extends AppCompatActivity {
     EditText Gemail, mpassword;
-    Button Login;
+    Button Login,skip;
     TextView SiginupText, Forgettext;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
@@ -38,10 +39,19 @@ public class LoginActivity extends AppCompatActivity {
         Gemail=findViewById(R.id.email);
         mpassword=findViewById(R.id.password);
         Login=findViewById(R.id.login);
+        skip=findViewById(R.id.skip);
         SiginupText=findViewById(R.id.siginup);
         Forgettext=findViewById(R.id.forget);
         progressBar = findViewById(R.id.progresbar);
         mAuth = FirebaseAuth.getInstance();
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseUser currentUser=mAuth.getCurrentUser();
+                updateUI(currentUser);
+            }
+        });
 
         //login par click listener
         Login.setOnClickListener(new View.OnClickListener() {
@@ -125,10 +135,32 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         if (mAuth.getCurrentUser() != null) {
             finish();
             startActivity(new Intent(this, MainActivity.class));
 
+        }
+    }
+
+    private void updateUI(FirebaseUser currentUser) {
+        if (currentUser==null)
+        {
+            mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful())
+                    {
+                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                        FirebaseUser currentUser=mAuth.getCurrentUser();
+                        updateUI(currentUser);
+
+                    }
+                    else {
+                        updateUI(null);
+                    }
+                }
+            });
         }
     }
 

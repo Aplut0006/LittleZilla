@@ -92,6 +92,19 @@
                 android:layout_marginTop="10dp"
                 android:textColor="#fd5d2b"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/a"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="SKIP"
+        android:layout_below="@id/siginup"
+        android:id="@+id/skip"
+        android:fontFamily="@font/aclonica"
+        android:textColor="#058971"
+        android:textSize="20sp"/>
+
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

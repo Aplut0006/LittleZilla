@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".Activities.ScoreActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/appBar"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDark"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="200dp"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:layout_centerHorizontal="true">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        app:cardMaxElevation="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        android:id="@+id/cardview">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="total question:"
+                    android:id="@+id/total"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/aclonica"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="10"
+                    android:id="@+id/totalno"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="23sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/aclonica"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Corect question:"
+                    android:textAlignment="center"
+                    android:id="@+id/corect"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/aclonica"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="10"
+                    android:id="@+id/corectno"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="23sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/aclonica"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Wrong question:"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:id="@+id/wrong"
+                    android:textSize="25sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/aclonica"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="5"
+                    android:id="@+id/wrongno"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="23sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/aclonica"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
+</RelativeLayout>
