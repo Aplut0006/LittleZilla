@@ -22,6 +22,12 @@
         <activity android:name=".Activities.HindiActivity" />
         <activity android:name=".Activities.LoginActivity" />
         <activity android:name=".Activities.RegisterActivity" />
+        <activity android:name=".Activities.DivideActivity"/>
+        <activity android:name=".Activities.ScoreActivity"/>
+        <activity android:name=".Activities.AddActivity"/>
+        <activity android:name=".Activities.SubtractActivity"/>
+        <activity android:name=".Activities.TableActivity"/>
+        <activity android:name=".Activities.ZerotoNineActivity"/>
         <activity android:name=".Activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

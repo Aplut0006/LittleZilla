@@ -73,6 +73,8 @@ public class AddActivity extends AppCompatActivity {
                     i.putExtra("incorrect", String.valueOf(wrong));
                   //  i.putExtra("points",String.valueOf(points));
                     startActivity(i);
+                    finish();
+
                 }
                 else{
                     reference = FirebaseDatabase.getInstance().getReference().child("Add").child(String.valueOf(total));
