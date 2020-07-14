@@ -58,8 +58,6 @@ public class EnglishActivity extends AppCompatActivity implements FirebaseLoadDo
                     englishModelList.add(myDataSnapshot.getValue(EnglishModel.class));
                 }
                 firebaseLoadDone.onFirebaseLoadSuccess(englishModelList);
-
-
             }
 
             @Override
