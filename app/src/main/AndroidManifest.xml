@@ -27,6 +27,7 @@
         <activity android:name=".Activities.AddActivity"/>
         <activity android:name=".Activities.SubtractActivity"/>
         <activity android:name=".Activities.TableActivity"/>
+        <activity android:name=".Activities.MultiplicationActivity"/>
         <activity android:name=".Activities.ZerotoNineActivity"/>
         <activity android:name=".Activities.SplashActivity">
             <intent-filter>
