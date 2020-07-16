@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.squareup.picasso.Picasso;
 
@@ -78,7 +79,7 @@ public class EnglishAdapter extends PagerAdapter {
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {
 
-                    int result = tts.setLanguage(Locale.US);
+                    int result = tts.setLanguage(new Locale("en","IN"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA
                             || result == TextToSpeech.LANG_NOT_SUPPORTED) {
@@ -93,7 +94,7 @@ public class EnglishAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                 String text = textViewCapitalLetter.getText().toString();
-                tts.setLanguage(Locale.UK);
+                tts.setLanguage(new Locale("en","IN"));
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 
             }
@@ -113,7 +114,6 @@ public class EnglishAdapter extends PagerAdapter {
                 buttonPlayDescription.setVisibility(View.VISIBLE);
             }
         });
-
         container.addView(view);
         return view;
     }
