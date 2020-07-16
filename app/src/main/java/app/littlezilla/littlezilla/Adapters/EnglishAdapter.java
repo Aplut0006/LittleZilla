@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.squareup.picasso.Picasso;
 
@@ -113,7 +114,6 @@ public class EnglishAdapter extends PagerAdapter {
                 buttonPlayDescription.setVisibility(View.VISIBLE);
             }
         });
-
         container.addView(view);
         return view;
     }
