@@ -1,8 +1,11 @@
 package app.littlezilla.littlezilla.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +26,7 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -48,6 +52,10 @@ import app.littlezilla.littlezilla.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    NavigationView navigationView;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle toggle;
+
     private RecyclerView recyclerViewBanner, recyclerViewContent;
 //    private FirebaseRecyclerOptions<BannerModel> options;
     private FirebaseRecyclerOptions<ContentModel> options1;
@@ -65,6 +73,31 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Little Zilla");
         setSupportActionBar(toolbar);
+        navigationView=findViewById(R.id.navmenu);
+        drawerLayout=findViewById(R.id.drawer);
+        toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId())
+                {
+                    case R.id.home:
+                        Toast.makeText(MainActivity.this,"HOME",Toast.LENGTH_LONG).show();
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+
+                    case R.id.share:
+                        Toast.makeText(MainActivity.this,"Share",Toast.LENGTH_LONG).show();
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                }
+                return true;
+            }
+        });
 //        progressDialog = new ProgressDialog(this);
 //        progressDialog.setMessage("Updating Data...");
 //        progressDialog.setCancelable(false);
