@@ -46,7 +46,8 @@ public class HindiActivity extends AppCompatActivity implements HindiFirebaseLoa
         viewPager.setPageTransformer(true,new DepthPageTransformer());
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("hindi");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Hindi");
+
 
         firebaseLoadDone = this;
 
