@@ -6,9 +6,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.slidingpanelayout.widget.SlidingPaneLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,6 +30,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -36,6 +41,7 @@ import java.util.List;
 
 import app.littlezilla.littlezilla.Adapters.BannerRecyclerHolder;
 import app.littlezilla.littlezilla.Adapters.ContentRecyclerHolder;
+import app.littlezilla.littlezilla.Adapters.SliderAdapter;
 import app.littlezilla.littlezilla.Models.BannerModel;
 import app.littlezilla.littlezilla.Models.ContentModel;
 import app.littlezilla.littlezilla.R;
@@ -43,12 +49,13 @@ import app.littlezilla.littlezilla.R;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewBanner, recyclerViewContent;
-    private FirebaseRecyclerOptions<BannerModel> options;
+//    private FirebaseRecyclerOptions<BannerModel> options;
     private FirebaseRecyclerOptions<ContentModel> options1;
-    private FirebaseRecyclerAdapter<BannerModel, BannerRecyclerHolder> adapter;
+//    private FirebaseRecyclerAdapter<BannerModel, BannerRecyclerHolder> adapter;
     private FirebaseRecyclerAdapter<ContentModel, ContentRecyclerHolder> adapter1;
     private DatabaseReference databaseReferenceBanner, databaseReferenceContent;
     private Toolbar toolbar;
+    private List<BannerModel> bannerModelList = new ArrayList<>();
     ProgressDialog progressDialog;
     FirebaseAuth mAuth;
     @Override
@@ -58,59 +65,91 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Little Zilla");
         setSupportActionBar(toolbar);
-        recyclerViewBanner = findViewById(R.id.recyclerViewBanner);
+//        progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("Updating Data...");
+//        progressDialog.setCancelable(false);
+
+//        databaseReferenceBanner = FirebaseDatabase.getInstance().getReference().child("BannerImages");
+//
+//        databaseReferenceBanner.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                BannerModel data = snapshot.getValue(BannerModel.class);
+//                bannerModelList.add(data);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+        bannerModelList.add(new BannerModel("https://codecanyon.img.customer.envatousercontent.com/files/255464710/Banner.png?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=4de7d5607a3a1959e0980094342fba87"));
+        bannerModelList.add(new BannerModel("https://i.pinimg.com/originals/f2/d6/37/f2d637801238bb720bd360dee49f1019.jpg"));
+        bannerModelList.add(new BannerModel("https://i.pinimg.com/originals/e2/c4/35/e2c4353d8d53a1a47ab6de3e46d6b0f9.jpg"));
+//        recyclerViewBanner = findViewById(R.id.recyclerViewBanner);
+        SliderView sliderView = findViewById(R.id.imageSlider);
+
+        SliderAdapter adapterSlider = new SliderAdapter(this,bannerModelList);
+
+        sliderView.setSliderAdapter(adapterSlider);
+
+        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+        sliderView.setIndicatorSelectedColor(Color.WHITE);
+        sliderView.setIndicatorUnselectedColor(Color.GRAY);
+        sliderView.setScrollTimeInSec(4); //set scroll delay in seconds :
+        sliderView.startAutoCycle();
         recyclerViewContent = findViewById(R.id.recyclerViewContent);
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Updating Data...");
-        progressDialog.setCancelable(false);
-        recyclerViewBanner.setHasFixedSize(true);
-        recyclerViewBanner.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+//        recyclerViewBanner.setHasFixedSize(true);
+//        recyclerViewBanner.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerViewContent.setHasFixedSize(true);
         recyclerViewContent.setLayoutManager(new GridLayoutManager(this, 2));
-        databaseReferenceBanner = FirebaseDatabase.getInstance().getReference().child("BannerImages");
+//        databaseReferenceBanner = FirebaseDatabase.getInstance().getReference().child("BannerImages");
         mAuth=FirebaseAuth.getInstance();
         FirebaseUser user=mAuth.getCurrentUser();
 
-        databaseReferenceBanner.keepSynced(true);
+//        databaseReferenceBanner.keepSynced(true);
 
-        options = new FirebaseRecyclerOptions.Builder<BannerModel>()
-                .setQuery(databaseReferenceBanner, BannerModel.class)
-                .build();
-
-        adapter = new FirebaseRecyclerAdapter<BannerModel, BannerRecyclerHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull final BannerRecyclerHolder holder, int position, @NonNull final BannerModel model) {
-                holder.progressBarBannerView.setVisibility(View.VISIBLE);
-
-                Picasso.get().load(model.getBannerImages())
-                        .fit()
-                        .centerCrop()
-                        .into(holder.bannerImageView, new Callback() {
-                            @Override
-                            public void onSuccess() {
-                                progressDialog.cancel();
-                                holder.progressBarBannerView.setVisibility(View.GONE);
-                            }
-
-                            @Override
-                            public void onError(Exception e) {
-                                progressDialog.cancel();
-                            }
-                        });
-            }
-
-            @NonNull
-            @Override
-            public BannerRecyclerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(MainActivity.this)
-                        .inflate(R.layout.banner_images_view, parent, false);
-                return new BannerRecyclerHolder(view);
-            }
-        };
-        recyclerViewBanner.setAdapter(adapter);
-        //
-        //
-        //
+//        options = new FirebaseRecyclerOptions.Builder<BannerModel>()
+//                .setQuery(databaseReferenceBanner, BannerModel.class)
+//                .build();
+//
+//        adapter = new FirebaseRecyclerAdapter<BannerModel, BannerRecyclerHolder>(options) {
+//            @Override
+//            protected void onBindViewHolder(@NonNull final BannerRecyclerHolder holder, int position, @NonNull final BannerModel model) {
+//                holder.progressBarBannerView.setVisibility(View.VISIBLE);
+//
+//                Picasso.get().load(model.getBannerImages())
+//                        .fit()
+//                        .centerCrop()
+//                        .into(holder.bannerImageView, new Callback() {
+//                            @Override
+//                            public void onSuccess() {
+//                                progressDialog.cancel();
+//                                holder.progressBarBannerView.setVisibility(View.GONE);
+//                            }
+//
+//                            @Override
+//                            public void onError(Exception e) {
+//                                progressDialog.cancel();
+//                            }
+//                        });
+//            }
+//
+//            @NonNull
+//            @Override
+//            public BannerRecyclerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                View view = LayoutInflater.from(MainActivity.this)
+//                        .inflate(R.layout.banner_images_view, parent, false);
+//                return new BannerRecyclerHolder(view);
+//            }
+//        };
+//        recyclerViewBanner.setAdapter(adapter);
+//        //
+//        //
+//        //
         databaseReferenceContent = FirebaseDatabase.getInstance().getReference().child("content");
 
         databaseReferenceContent.keepSynced(true);
@@ -184,11 +223,14 @@ public class MainActivity extends AppCompatActivity {
                         .into(holder.imageViewContent, new Callback() {
                             @Override
                             public void onSuccess() {
+//                                progressDialog.cancel();
                                 holder.progressBarContent.setVisibility(View.GONE);
                             }
 
                             @Override
                             public void onError(Exception e) {
+//                                progressDialog.cancel();
+
                             }
                         });
             }
@@ -231,8 +273,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        progressDialog.show();
-        adapter.startListening();
+//        adapter.startListening();
         adapter1.startListening();
         if(mAuth.getCurrentUser()==null){
             startActivity(new Intent(this,MainActivity.class));
@@ -244,10 +285,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        adapter.stopListening();
+//        adapter.stopListening();
         adapter1.startListening();
 
     }
-    
 
 }
